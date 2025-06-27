@@ -56,25 +56,40 @@ router.get('/', async (req, res) => {
                                         let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
                                         await delay(800);
                                    let b64data = Buffer.from(data).toString('base64');
-                                   let session = await Qr_Code_By_Mbuvi_Tech.sendMessage(Qr_Code_By_Mbuvi_Tech.user.id, { text: '' + b64data });
+                                   let session = await Qr_Code_By_Mbuvi_Tech.sendMessage(Qr_Code_By_Mbuvi_Tech.user.id, { text: 'Bellah~' + b64data });
 
                                    let MBUVI_MD_TEXT = `
-Bellah Xmd V2 Sucess Scan Session 
-> Bot repo: https://github.com/gifteddaves/DAVE-XMD 
-
-> Owner: *Gidted Dave*
-
-> BotName: *DAVE-XMD* 
-
-
-*Follow support for updates*
-https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k
-
-*Join Group*
-https://chat.whatsapp.com/CaPeB0sVRTrL3aG6asYeAC
+╔════════════════════◇
+║『 SESSION CONNECTED』
+║ ✨ DAVE-XMD🔷
+║ ✨ Gifted Dave 🔷
+╚════════════════════╝
 
 
-> Regards Giddy Tennor_ `
+---
+
+╔════════════════════◇
+║『 YOU'VE CHOSEN DAVE-XMD 』
+║ -Set the session ID in Heroku:
+║ - SESSION_ID: 
+╚════════════════════╝
+╔════════════════════◇
+║ 『••• _V𝗶𝘀𝗶𝘁 𝗙𝗼𝗿_H𝗲𝗹𝗽 •••』
+║❍ 𝐘𝐨𝐮𝐭𝐮𝐛𝐞: youtube.com/@davlodavlo19
+║❍ 𝐎𝐰𝐧𝐞𝐫: 254104260236
+║❍ 𝐑𝐞𝐩𝐨: https://github.com/gifteddaves/DAVE-XMD
+║❍ 𝐖𝐚𝐆𝗿𝐨𝐮𝐩: https://chat.whatsapp.com/CaPeB0sVRTrL3aG6asYeAC
+║❍ 𝐖𝐚𝐂𝐡𝐚𝐧𝐧𝐞𝐥: https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k
+║❍ 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦: _https://www.instagram.com/giddy_tennor_?igsh=YzZ0NDRoaXFxM2Zk
+║ ☬ ☬ ☬ ☬
+╚═════════════════════╝
+𒂀 Enjoy DAVE-XMD
+
+
+---
+
+Don't Forget To Give Star⭐ To My Repo
+______________________________`;
          await Qr_Code_By_Mbuvi_Tech.sendMessage(Qr_Code_By_Mbuvi_Tech.user.id,{text:MBUVI_MD_TEXT},{quoted:session})
 
 
