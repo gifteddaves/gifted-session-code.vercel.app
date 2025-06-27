@@ -1,0 +1,22 @@
+{
+    "name": "DAVE-XMD Pairing",
+    "description": "newly designed bot by Giddy Tennor",
+    "logo": "https://i.ibb.co/3MZpcvr/2fec156e2320d733.jpg",
+    "repository": "https://github.com/xhclintohn/TOXIC-PAIR-CODE",
+    "keywords": ["LegacyMd"],
+    "success_url": "/", 
+    "buildpacks": [{ "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" } ],
+    "env": {      
+      "PORT": {
+        "description": "Port for web app.4000,5000,3000... any!",
+        "value": "5000",
+        "required": false 
+      },
+      "MESSAGE": {
+        "description": "set session id conformation message",
+        "value": "",
+        "required": false 
+      }
+    }   
+
+}
