@@ -1,8 +1,8 @@
 {
-    "name": "DAVE-XMD Pairing",
-    "description": "newly designed bot by Giddy Tennor",
-    "logo": "https://i.ibb.co/3MZpcvr/2fec156e2320d733.jpg",
-    "repository": "https://github.com/xhclintohn/TOXIC-PAIR-CODE",
+    "name": "VolTah-XMD Pairing",
+    "description": "VolTah-XMD WA bot, Created by Giddy Tennor",
+    "logo": "https://telegra.ph/file/a7ca8d4777fa8ad977795.jpg",
+    "repository": "https://github.com/cheekydavy/MBUVI-PAIR-CODE",
     "keywords": ["LegacyMd"],
     "success_url": "/", 
     "buildpacks": [{ "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" } ],
