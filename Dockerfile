@@ -1,21 +1,23 @@
 FROM node:lts-buster
 
+# Install required packages
 RUN apt-get update && \
-  apt-get install -y \
-  ffmpeg \
-  imagemagick \
-  webp && \
+  apt-get install -y ffmpeg imagemagick webp && \
   apt-get upgrade -y && \
   rm -rf /var/lib/apt/lists/*
 
-WORKDIR /usr/src/app
+# Set working directory
+WORKDIR /app
 
-COPY package.json .
+# Copy and install dependencies
+COPY package.json ./
+RUN npm install
 
-RUN npm install && npm install -g qrcode-terminal pm2
-
+# Copy all project files
 COPY . .
 
-EXPOSE 5000
+# Expose port (if your bot runs a server e.g., for dashboard/pairing API)
+EXPOSE 3000
 
-CMD ["npm", "start"]
+# Start the bot from index.js
+CMD ["node", "index.js"]
