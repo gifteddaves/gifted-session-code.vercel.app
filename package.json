@@ -1,0 +1,28 @@
+{
+  "description": "Toxic-sessions",
+  "main": "./mbuvi.js",
+  "engines": {
+    "npm": ">=9.7.2",
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "start": "pm2 start mbuvi.js --deep-monitoring --attach --name PAIR",
+    "stop": "pm2 stop PAIR",
+    "restart": "pm2 restart PAIR"
+  },
+  "author": "Toxic Tech",
+  "license": "GPL-3.0 license",
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.18",
+    "maher-zubair-baileys": "^6.6.5",
+    "qrcode": "^1.5.3",
+    "awesome-phonenumber": "^2.66.0",
+    "pino": "^8.17.0",
+    "phone": "^3.1.31",
+    "body-parser": "^1.20.2",
+    "pastebin-js": "^1.0.6",
+    "express": "^4.19.2",
+    "path": "^0.12.7",
+    "pm2": "^6.0.6"
+  }
+}
