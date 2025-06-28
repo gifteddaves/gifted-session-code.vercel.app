@@ -1,4 +1,4 @@
-New DAVE-XMD pairing site
+New DAVE SESSIONS pairing site
 QR code pair
 8 digit pair codes
 all regards to
