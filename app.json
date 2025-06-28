@@ -1,22 +1,25 @@
 {
-    "name": "DAVE-XMD Pairing",
-    "description": "DAVE-XMD WA bot, Created by Gifted Dave",
-    "logo": "https://telegra.ph/file/a7ca8d4777fa8ad977795.jpg",
-    "repository": "https://github.com/cheekydavy/MBUVI-PAIR-CODE",
-    "keywords": ["LegacyMd"],
-    "success_url": "/", 
-    "buildpacks": [{ "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" } ],
-    "env": {      
-      "PORT": {
-        "description": "Port for web app.4000,5000,3000... any!",
-        "value": "5000",
-        "required": false 
-      },
-      "MESSAGE": {
-        "description": "set session id conformation message",
-        "value": "",
-        "required": false 
-      }
-    }   
-
+  "name": "DAVE SESSIONS",
+  "description": "Universal session pairing for both DAVE-XMD and Dave-Md-V1 WhatsApp bots by Gifted Dave.",
+  "logo": "https://telegra.ph/file/a7ca8d4777fa8ad977795.jpg",
+  "repository": "https://github.com/gifteddaves/DAVE-XMD",
+  "keywords": ["DaveMd", "DAVE-XMD", "Dave-Md-V1", "WhatsApp-Bot", "Pairing"],
+  "success_url": "/",
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest"
+    }
+  ],
+  "env": {
+    "PORT": {
+      "description": "Port for web app. 3000, 4000, 5000 etc.",
+      "value": "5000",
+      "required": false
+    },
+    "MESSAGE": {
+      "description": "Set session ID confirmation message (optional).",
+      "value": "Session pairing complete. Use the DaveMd~ session ID in your bot.",
+      "required": false
+    }
+  }
 }
