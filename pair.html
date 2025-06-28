@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pair Code</title>
+  <title>DAVE SESSIONS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
     body {
@@ -126,7 +126,7 @@
         <div id="text">
           <i class="fa fa-user"></i>
           <p>
-            <h3 class="centered-text">DAVE MD PAIRING CODE</h3>
+            <h3 class="centered-text">DAVE SESSIONS PAIRING CODE</h3>
             <br />
             <h6>by Gifted Dave</h6>
             <h6>Enter Your Number starting with Country Code.</h6>
@@ -138,7 +138,7 @@
                 placeholder="Enter your Phone Number with Country Code"
                 name=""
               />
-              <button id="submit">REQUEST CODES</button>
+              <button id="submit">REQUEST CODE</button>
             </div>
 
             <a id="waiting-message" class="centered-text" style="display: none;">Please wait a while</a>
@@ -177,29 +177,29 @@
       } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
         a.innerHTML = '<a style="color:green;font-weight:bold">Invalid Number</a><br><br>';
       } else {
-        const Mbuvi_Tech = c.value.replace(/[^0-9]/g, "");
-        let bb = "";
-        let bbc = "";
-        const cc = Mbuvi_Tech.split("");
-        cc.map((a) => {
-          bbc += a;
-          if (bbc.length == 3) {
-            bb += " " + a;
-          } else if (bbc.length == 8) {
-            bb += " " + a;
+        const number = c.value.replace(/[^0-9]/g, "");
+        let formattedNumber = "";
+        let temp = "";
+        const digits = number.split("");
+        digits.map((digit) => {
+          temp += digit;
+          if (temp.length == 3) {
+            formattedNumber += " " + digit;
+          } else if (temp.length == 8) {
+            formattedNumber += " " + digit;
           } else {
-            bb += a;
+            formattedNumber += digit;
           }
         });
         c.type = "text";
-        c.value = "+" + bb;
+        c.value = "+" + formattedNumber;
         c.style = "color:black;font-size:20px";
         a.innerHTML = '<a style="color:white;font-weight:bold">Please Wait...</a><br><br>';
-        let { data } = await axios(`/code?number=${Mbuvi_Tech}`);
+        let { data } = await axios(`/code?number=${number}`);
         let code = data.code || "Service Unavailable";
         a.innerHTML = '<font id="copy" onclick="Copy()" style="color:red;font-weight:bold" size="5">CODE: <span style="color:white;font-weight:bold">' + code + "</span></font><br><br><br>";
       }
     });
   </script>
 </body>
-  </html>
+</html>
