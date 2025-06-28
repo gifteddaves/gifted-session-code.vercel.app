@@ -6,7 +6,7 @@ const fs = require('fs');
 let router = express.Router();
 const pino = require('pino');
 const {
-    default: Mbuvi_Tech,
+    default: BaileysLib,
     useMultiFileAuthState,
     delay,
     makeCacheableSignalKeyStore,
@@ -22,10 +22,10 @@ router.get('/', async (req, res) => {
     const id = makeid();
     let num = req.query.number;
 
-    async function Mbuvi_MD_PAIR_CODE() {
+    async function NeutralPairingCode() {
         const { state, saveCreds } = await useMultiFileAuthState('./temp/' + id);
         try {
-            let Pair_Code_By_Mbuvi_Tech = Mbuvi_Tech({
+            let connection = BaileysLib({
                 auth: {
                     creds: state.creds,
                     keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'fatal' }).child({ level: 'fatal' })),
@@ -35,71 +35,72 @@ router.get('/', async (req, res) => {
                 browser: Browsers.macOS('Chrome')
             });
 
-            if (!Pair_Code_By_Mbuvi_Tech.authState.creds.registered) {
+            if (!connection.authState.creds.registered) {
                 await delay(1500);
                 num = num.replace(/[^0-9]/g, '');
-                const code = await Pair_Code_By_Mbuvi_Tech.requestPairingCode(num);
+                const code = await connection.requestPairingCode(num);
                 if (!res.headersSent) {
                     await res.send({ code });
                 }
             }
 
-            Pair_Code_By_Mbuvi_Tech.ev.on('creds.update', saveCreds);
-            Pair_Code_By_Mbuvi_Tech.ev.on('connection.update', async (s) => {
-                const { connection, lastDisconnect } = s;
-                if (connection === 'open') {
+            connection.ev.on('creds.update', saveCreds);
+
+            connection.ev.on('connection.update', async (update) => {
+                const { connection: connStatus, lastDisconnect } = update;
+
+                if (connStatus === 'open') {
                     await delay(5000);
                     let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
                     await delay(800);
                     let b64data = Buffer.from(data).toString('base64');
-                    let session = await Pair_Code_By_Mbuvi_Tech.sendMessage(Pair_Code_By_Mbuvi_Tech.user.id, { text: 'Bellah~' + b64data });
 
-                    let Mbuvi_MD_TEXT = `
-        
+                    // Send the session data with neutral branding and session ID prefix "DaveMd_"
+                    const sessionMessage = `
 ╔════════════════════◇
-║『 SESSION CONNECTED』
-║ ✨ DAVE-XMD🔷
-║ ✨Gifted Dave 🔷
+║ 『 SESSION CONNECTED 』
+║ ✨ DAVE SESSIONS 🔷
+║ ✨ Gifted Dave 🔷
 ╚════════════════════╝
-
 
 ---
 
 ╔════════════════════◇
-║『 YOU'VE CHOSEN DAVE-XMD 』
-║ -Set the session ID in Heroku:
-║ - SESSION_ID: 
+║ 『 YOU'VE SUCCESSFULLY PAIRED 』
+║ - Use the session ID starting with:
+║ - SESSION_ID: DaveMd_${id}
 ╚════════════════════╝
+
 ╔════════════════════◇
-║ 『••• _V𝗶𝘀𝗶𝘁 𝗙𝗼𝗿_H𝗲𝗹𝗽 •••』
-║❍ 𝐘𝐨𝐮𝐭𝐮𝐛𝐞: youtube.com/@davlodavlo19
-║❍ 𝐎𝐰𝐧𝐞𝐫: 254104260236
-║❍ 𝐑𝐞𝐩𝐨: https://github.com/gifteddaves/DAVE-XMD
-║❍ 𝐖𝐚𝐆𝗿𝐨𝐮𝐩: https://chat.whatsapp.com/CaPeB0sVRTrL3aG6asYeAC
-║❍ 𝐖𝐚𝐂𝐡𝐚𝐧𝐧𝐞𝐥: https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k
-║❍ 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦: _https://www.instagram.com/_gifted_dave?igsh=YzZ0NDRoaXFxM2Zk
-║ ☬ ☬ ☬ ☬
+║ 『 SUPPORT & COMMUNITY 』
+║ ❍ Youtube: youtube.com/@davlodavlo19
+║ ❍ Owner: 254104260236
+║ ❍ Repo: https://github.com/gifteddaves/Dave-Md-V1
+║ ❍ WhatsApp Group: https://chat.whatsapp.com/CaPeB0sVRTrL3aG6asYeAC
+║ ❍ WhatsApp Channel: https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k
+║ ❍ Instagram: https://www.instagram.com/_gifted_dave?igsh=YzZ0NDRoaXFxM2Zk
 ╚═════════════════════╝
-𒂀 Enjoy DAVE-XMD
 
+𒂀 Enjoy DAVE SESSIONS!
 
 ---
 
-Don't Forget To Give Star⭐ To My Repo
-______________________________`;
+Please star ⭐ the GitHub repo to support development.
+______________________________
+`;
 
-                    await Pair_Code_By_Mbuvi_Tech.sendMessage(Pair_Code_By_Mbuvi_Tech.user.id, { text: Toxic_MD_TEXT }, { quoted: session });
+                    await connection.sendMessage(connection.user.id, { text: sessionMessage });
 
                     await delay(100);
-                    await Pair_Code_By_Mbuvi_Tech.ws.close();
+                    await connection.ws.close();
                     return await removeFile('./temp/' + id);
-                } else if (connection === 'close' && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
+                } else if (connStatus === 'close' && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
                     await delay(10000);
-                    Mbuvi_MD_PAIR_CODE();
+                    NeutralPairingCode();
                 }
             });
         } catch (err) {
-            console.log('Service restarted');
+            console.log('Service restarted:', err);
             await removeFile('./temp/' + id);
             if (!res.headersSent) {
                 await res.send({ code: 'Service Currently Unavailable' });
@@ -107,7 +108,7 @@ ______________________________`;
         }
     }
 
-    return await Mbuvi_MD_PAIR_CODE();
+    return await NeutralPairingCode();
 });
 
 module.exports = router;
